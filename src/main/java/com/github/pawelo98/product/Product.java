@@ -1,5 +1,6 @@
 package com.github.pawelo98.product;
 
+import com.github.pawelo98.common.BaseEntity;
 import com.github.pawelo98.order.Order;
 import com.github.pawelo98.supplier.Supplier;
 
@@ -11,12 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Product extends BaseEntity {
 
     @Column
     @Size(min=1, max=20)
@@ -30,10 +26,6 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private List<Order> orders;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -53,10 +45,6 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setName(String name) {

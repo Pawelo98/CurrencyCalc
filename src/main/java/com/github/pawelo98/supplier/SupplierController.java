@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/api/suppliers")
@@ -34,5 +35,10 @@ public class SupplierController {
     public ResponseEntity<SupplierDTO> addSupplier(@RequestParam String name, @RequestParam Long id){
         SupplierDTO newSupplier = supplierService.addSupplier(name, id);
         return new ResponseEntity<>(newSupplier, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/find/{name}")
+    public List <SupplierDTO> listProducts(@PathVariable String name){
+        return supplierService.findAllByProductName(name);
     }
 }

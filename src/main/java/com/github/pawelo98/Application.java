@@ -1,8 +1,13 @@
 package com.github.pawelo98;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -15,6 +20,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableSwagger2
+@EntityScan(basePackageClasses = {Application.class, Jsr310JpaConverters.class})
 public class Application {
 
     public static void main(String[] args) {
@@ -24,7 +30,7 @@ public class Application {
     @Bean
     public Docket newsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("api")
+                .groupName("greetings")
                 .apiInfo(apiInfo())
                 .select()
                 .paths(regex("/api.*"))
