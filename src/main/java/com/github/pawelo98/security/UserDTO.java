@@ -1,12 +1,15 @@
 package com.github.pawelo98.security;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.pawelo98.common.BaseEntity;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.UUID;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO extends BaseEntity{
 
-    private String uuid = UUID.randomUUID().toString();;
+    private String uuid = UUID.randomUUID().toString();
     private String email;
 
     public String getEmail() {

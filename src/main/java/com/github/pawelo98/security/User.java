@@ -4,10 +4,7 @@ import com.github.pawelo98.common.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,9 +12,12 @@ import java.util.Collections;
 @Entity
 public class User extends BaseEntity implements UserDetails{
 
-    @Size(min=1, max=20)
+    @Size(min=1, max=50)
+    @Column(nullable = false, unique = true)
     private String email;
     private String password;
+
+    private boolean isEnabled = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
@@ -37,12 +37,20 @@ public class User extends BaseEntity implements UserDetails{
         return email;
     }
 
+    public boolean getEnabled() {return isEnabled; }
+
+    public void setEnabled(boolean isEnabled) {this.isEnabled = true; }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void enable(){
+        this.isEnabled = true;
     }
 
     @Override
@@ -62,6 +70,6 @@ public class User extends BaseEntity implements UserDetails{
 
     @Override
     public boolean isEnabled(){
-        return true;
+        return isEnabled;
     }
 }
