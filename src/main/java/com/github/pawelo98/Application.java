@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -21,6 +22,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableJpaRepositories
 @EnableSwagger2
 @EntityScan(basePackageClasses = {Application.class, Jsr310JpaConverters.class})
+@EnableScheduling
 public class Application {
 
     public static void main(String[] args) {
