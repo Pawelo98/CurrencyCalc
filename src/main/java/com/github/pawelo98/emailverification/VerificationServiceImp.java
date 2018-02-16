@@ -46,7 +46,7 @@ public class VerificationServiceImp implements VerificationService {
         MimeMessageHelper helper = new MimeMessageHelper(mail, true);
         helper.setTo(email);
         helper.setSubject("Potwierdź email");
-        helper.setText("http://localhost:8080/api/verification-token/" + token, false);
+        helper.setText("https://intense-headland-35603.herokuapp.com/api/verification-token/" + token, false);
         javaMailSender.send(mail);
     }
 
