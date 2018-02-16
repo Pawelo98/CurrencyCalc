@@ -47,3 +47,13 @@ databaseChangeLog:
                       nullable: false
                       foreignHeyName: fk_verification_token_user
                       reference: user/{id}
+          - addForeignKeyConstraint:
+              baseColumnNames: person_id
+              baseTableName: address
+              constraintName: fk_address_person
+              deferrable: true
+              initiallyDeferred: true
+              onDelete: CASCADE
+              onUpdate: RESTRICT
+              referencedColumnNames: id
+              referencedTableName: person
