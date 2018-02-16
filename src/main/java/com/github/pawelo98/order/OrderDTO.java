@@ -8,10 +8,8 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-@Entity
 public class OrderDTO {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

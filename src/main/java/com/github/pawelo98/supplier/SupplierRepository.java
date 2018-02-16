@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
-    
+
+    //@Query("SELECT s from Supplier s JOINFETCH Product p")
     Set<Supplier> findAllByProductName(String product);
 }

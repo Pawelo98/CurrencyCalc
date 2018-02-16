@@ -16,7 +16,6 @@ public class UserDTO extends BaseEntity{
         return email;
     }
 
-    @Override
     public String getUuid() {
         return uuid;
     }

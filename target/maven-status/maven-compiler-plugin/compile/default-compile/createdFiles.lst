@@ -1,0 +1,8 @@
+com\github\pawelo98\product\ProductService.class
+com\github\pawelo98\product\ProductController.class
+com\github\pawelo98\product\Product.class
+com\github\pawelo98\supplier\Supplier.class
+com\github\pawelo98\order\Order.class
+com\github\pawelo98\product\ProductRepository.class
+com\github\pawelo98\Application.class
+com\github\pawelo98\product\ProductServiceImp.class

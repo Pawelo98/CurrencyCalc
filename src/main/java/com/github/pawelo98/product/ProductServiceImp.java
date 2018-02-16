@@ -56,6 +56,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import static com.github.pawelo98.product.ProductDTOMapper.*;
 
@@ -82,6 +83,11 @@ public class ProductServiceImp implements ProductService {
         product.setPrice(productDTO.getPrice());
         product.setName(productDTO.getName());
         return productMapper.toProductDTO(productRepository.save(product));
+    }
+
+    @Override
+    public Set<ProductNameAndPrice> findAllInterface(){
+        return productRepository.findAllByPriceGreaterThan(BigDecimal.ZERO);
     }
 
     @Override

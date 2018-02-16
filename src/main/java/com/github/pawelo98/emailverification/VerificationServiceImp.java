@@ -46,19 +46,22 @@ public class VerificationServiceImp implements VerificationService {
         MimeMessageHelper helper = new MimeMessageHelper(mail, true);
         helper.setTo(email);
         helper.setSubject("Potwierdź email");
-        helper.setText("http://localhost:8080/api/verification-token/ " + token, false);
+        helper.setText("http://localhost:8080/api/verification-token/" + token, false);
         javaMailSender.send(mail);
     }
 
     @Override
     public void createToken(User user) throws MessagingException{
-        VerificationToken token = new VerificationToken();
-        token.setUser(user);
-        token.setToken(UUID.randomUUID().toString());
-        token.setExpiryDate(LocalDateTime.now().plusMinutes(2000));
-        verificationRepository.save(token);
+        try {
+            VerificationToken token = new VerificationToken();
+            token.setUser(user);
+            token.setToken(UUID.randomUUID().toString());
+            token.setExpiryDate(LocalDateTime.now().plusMinutes(2000));
+            verificationRepository.save(token);
 
-        sendMail(user.getEmail(),token.getToken());
+            sendMail(user.getEmail(), token.getToken());
+        }
+        catch(NullPointerException e){e.printStackTrace();}
     }
 
     @Override

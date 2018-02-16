@@ -2,7 +2,6 @@ package com.github.pawelo98.common;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -11,7 +10,9 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true, nullable = false, length = 64, updatable = false)
     private String uuid = UUID.randomUUID().toString();
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -50,7 +51,7 @@ public class BaseEntity {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() throws NullPointerException {
         return uuid.hashCode();
     }
 

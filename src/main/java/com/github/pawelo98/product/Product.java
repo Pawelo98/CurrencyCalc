@@ -12,13 +12,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-public class Product extends BaseEntity {
+public class Product extends BaseEntity implements ProductNameAndPrice{
 
-    @Column
-    @Size(min=1, max=20)
+    @Column(unique = true, nullable = false)
+    @Size(min=1, max=64)
+    //@Transient - brak utworzenia kolumny w bazie danych
     private String name;
 
     @DecimalMin("0.00")
+    @Column(nullable = false)
     private BigDecimal price;
 
     @OneToMany(mappedBy = "product")
