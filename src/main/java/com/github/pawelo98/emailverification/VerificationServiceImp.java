@@ -56,7 +56,7 @@ public class VerificationServiceImp implements VerificationService {
             VerificationToken token = new VerificationToken();
             token.setUser(user);
             token.setToken(UUID.randomUUID().toString());
-            token.setExpiryDate(LocalDateTime.now().plusMinutes(2000));
+            token.setExpiryDate(LocalDateTime.now().plusMinutes(5));
             verificationRepository.save(token);
 
             sendMail(user.getEmail(), token.getToken());
